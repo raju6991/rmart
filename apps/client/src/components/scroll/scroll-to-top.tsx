@@ -9,7 +9,7 @@ export default function ScrollToTopButton() {
     <button
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center justify-center"
+      className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-900 transition focus:outline-none focus:ring-2 focus:ring-green-400 flex items-center justify-center"
     >
       {/* Up Arrow Icon */}
       <svg

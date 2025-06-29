@@ -16,9 +16,9 @@ export default function Navbar() {
   const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
-    <header className="w-full">
+    <header className="w-full sticky top-0 z-50 bg-white dark:bg-[#0d1f16]">
       {/* Top Logo + Search + Phone */}
-      <div className="bg-white dark:bg-[#0d1f16] border-b dark:border-green-900 px-10 py-4 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 ">
+      <div className="border-b dark:border-green-900 px-10 py-4 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
         <Link
           href="/"
           className="text-2xl font-bold text-green-700 dark:text-green-300"

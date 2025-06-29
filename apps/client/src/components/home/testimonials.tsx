@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -24,6 +25,27 @@ const testimonials = [
     image:
       "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=80&h=80&q=80",
   },
+  {
+    id: 4,
+    name: "Fresh Buyer 🌟",
+    text: "The UI is simple, fast, and intuitive. Love shopping from here.",
+    image:
+      "https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?auto=format&fit=crop&w=80&h=80&q=80",
+  },
+  {
+    id: 5,
+    name: "Eco Buyer 🌿",
+    text: "Their packaging and product variety is top-notch. Highly reliable.",
+    image:
+      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=80&h=80&q=80",
+  },
+  {
+    id: 6,
+    name: "Repeat Buyer 🔄",
+    text: "Consistently amazing experience. Wouldn’t shop anywhere else!",
+    image:
+      "https://images.unsplash.com/photo-1603415526960-f7e0328fddb7?auto=format&fit=crop&w=80&h=80&q=80",
+  },
 ];
 
 export default function Testimonials() {
@@ -31,55 +53,87 @@ export default function Testimonials() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % testimonials.length);
+      setIndex((prev) => (prev + 1) % Math.ceil(testimonials.length / 3));
     }, 6000);
     return () => clearInterval(timer);
   }, []);
 
-  const current = testimonials[index];
+  // Paginate in chunks of 3
+  const pages = [];
+  for (let i = 0; i < testimonials.length; i += 3) {
+    pages.push(testimonials.slice(i, i + 3));
+  }
 
   return (
-    <section className="w-full py-12 px-6 bg-blue-300/80 dark:bg-blue-800 rounded-4xl transition hover:bg-blue-400/80 mb-20">
-      {/* Content wrapper to constrain width and center */}
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-2xl font-semibold mb-8 text-blue-900 dark:text-blue-100">
-          What Our Customers Say
+    <section className="py-12 px-6 bg-gray-100 dark:bg-green-900 mb-20 transition-colors duration-300 rounded-2xl mx-5">
+      <div className="max-w-7xl mx-auto text-left">
+        <h2 className="text-2xl font-semibold mb-8 text-green-900 dark:text-green-100">
+          Client Testimonials
         </h2>
 
-        <div className="flex flex-col items-center space-y-6">
-          {/* Circular Image */}
-          <img
-            src={current.image}
-            alt={current.name}
-            className="w-20 h-20 rounded-full object-cover border-4 border-white dark:border-blue-900 shadow-lg"
-          />
-
-          {/* Testimonial Text */}
-          <blockquote className="text-lg italic text-blue-900 dark:text-blue-100 max-w-xl transition-opacity duration-700 opacity-100">
-            “{current.text}”
-          </blockquote>
-
-          {/* Customer Name */}
-          <p className="mt-2 font-medium text-blue-800 dark:text-blue-200">
-            – {current.name}
-          </p>
+        {/* Testimonial Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 transition-opacity duration-500">
+          {pages[index].map((testimonial) => (
+            <div
+              key={testimonial.id}
+              className="bg-white dark:bg-green-800 rounded-xl shadow p-6 flex flex-col justify-between text-left transition"
+            >
+              <div>
+                <Image
+                  src="/icons/testimonials.svg"
+                  alt="Quote icon"
+                  width={24}
+                  height={24}
+                  className="mb-2"
+                />
+                <blockquote className="text-sm italic text-green-900 dark:text-green-100 mb-4">
+                  {testimonial.text}
+                </blockquote>
+              </div>
+              <div className="flex items-center gap-3 mt-4">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-10 h-10 rounded-full object-cover border border-white dark:border-green-700 shadow"
+                />
+                <div>
+                  <p className="font-semibold text-green-800 dark:text-green-200">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-green-300">
+                    Customer
+                  </p>
+                </div>
+                <div className="ml-auto flex gap-1 text-orange-400 text-sm">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, i) => (
+                      <span key={i}>★</span>
+                    ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Indicators */}
-        <div className="mt-8 flex justify-center gap-3">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              aria-label={`Go to testimonial ${i + 1}`}
-              onClick={() => setIndex(i)}
-              className={`w-4 h-4 rounded-full transition-colors ${
-                i === index
-                  ? "bg-blue-900 dark:bg-blue-300"
-                  : "bg-blue-600 dark:bg-blue-700"
-              }`}
-              type="button"
-            />
-          ))}
+        {/* Navigation Arrows */}
+        <div className="flex justify-end mt-6 gap-2">
+          <button
+            onClick={() =>
+              setIndex((prev) => (prev - 1 + pages.length) % pages.length)
+            }
+            className="w-10 h-10 rounded-full bg-gray-200 dark:bg-green-700 hover:bg-green-500 hover:text-white transition-colors duration-300 flex items-center justify-center"
+            aria-label="Previous"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => setIndex((prev) => (prev + 1) % pages.length)}
+            className="w-10 h-10 rounded-full bg-gray-200 dark:bg-green-700 hover:bg-green-500 hover:text-white transition-colors duration-300 flex items-center justify-center"
+            aria-label="Next"
+          >
+            →
+          </button>
         </div>
       </div>
     </section>

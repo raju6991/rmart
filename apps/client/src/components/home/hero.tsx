@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="px-4 py-8 mx-5 bg-white dark:bg-[#0d1f16] dark:rounded-3xl">
+    <section className="px-4 py-8 bg-white dark:bg-[#0d1f16] dark:rounded-3xl dark:mx-5">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 relative rounded-3xl overflow-hidden">
           <Image
