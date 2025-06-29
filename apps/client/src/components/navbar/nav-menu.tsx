@@ -1,106 +1,39 @@
 "use client";
 
 import Link from "next/link";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import { usePathname } from "next/navigation";
 
-const categories = [
+const links = [
+  { name: "Home", href: "/" },
   { name: "Electronics", href: "/categories/electronics" },
   { name: "Clothing", href: "/categories/clothing" },
   { name: "Home & Kitchen", href: "/categories/home-kitchen" },
-  { name: "Offers", href: "/offers" },
+  { name: "About Us", href: "/about" },
+  { name: "Contact Us", href: "/contact" },
+  { name: "My Account", href: "/account" },
+  { name: "Cart", href: "/cart" },
 ];
 
 export default function NavMenu() {
+  const pathname = usePathname();
+
+  const isActive = (href: string) => pathname === href;
+
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[250px] gap-3 p-4">
-              {categories.map((cat) => (
-                <li key={cat.name}>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href={cat.href}
-                      className="block text-sm font-medium text-blue-600 hover:text-blue-900 transition"
-                    >
-                      {cat.name}
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Info</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[250px] gap-3 p-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/about"
-                    className="block text-sm text-muted-foreground hover:text-blue-600"
-                  >
-                    About Us
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/contact"
-                    className="block text-sm text-muted-foreground hover:text-blue-600"
-                  >
-                    Contact
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/faq"
-                    className="block text-sm text-muted-foreground hover:text-blue-600"
-                  >
-                    FAQ
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/account"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-blue-600"
-            >
-              My Account
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/cart"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-blue-600"
-            >
-              Cart
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="flex flex-wrap gap-4">
+      {links.map(({ name, href }) => (
+        <Link
+          key={name}
+          href={href}
+          className={`text-sm font-medium px-3 py-2 rounded transition ${
+            isActive(href)
+              ? "bg-white text-green-700 font-semibold"
+              : "text-white hover:text-green-200"
+          }`}
+        >
+          {name}
+        </Link>
+      ))}
+    </div>
   );
 }

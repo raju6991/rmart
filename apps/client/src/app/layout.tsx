@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import ScrollToTopButton from "@/components/scroll/scroll-to-top";
+import TopBar from "@/components/navbar/topbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +23,10 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider>
+          <TopBar />
           <Navbar />
           <main className="min-h-[80vh] px-4 py-6">{children}</main>
+          <ScrollToTopButton />
         </ThemeProvider>
       </body>
     </html>
