@@ -7,6 +7,7 @@ import PopularProducts from "@/components/products/products";
 import SaleCard from "@/components/sale/salecard";
 import Newsletter from "@/components/home/newsletter";
 import Testimonials from "@/components/home/testimonials";
+import NewsletterModal from "@/components/modal/newsletter-modal";
 
 export default function HomePage() {
   return (
@@ -20,6 +21,7 @@ export default function HomePage() {
       <FeaturedProducts />
       <Testimonials />
       <Footer />
+      <NewsletterModal />
     </>
   );
 }

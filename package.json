@@ -24,5 +24,8 @@
     "cypress": "^14.5.0",
     "supertest": "^7.1.1",
     "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "convex": "^1.25.1"
   }
 }

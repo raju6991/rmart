@@ -25,7 +25,7 @@ export default function RootLayout({
         <ThemeProvider>
           <TopBar />
           <Navbar />
-          <main className="min-h-[80vh] px-4 py-6">{children}</main>
+          <main className="min-h-[80vh]">{children}</main>
           <ScrollToTopButton />
         </ThemeProvider>
       </body>

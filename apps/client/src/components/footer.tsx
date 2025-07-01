@@ -7,14 +7,15 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="mx-5">
-      <div className="bg-slate-100 py-10 px-4 sm:px-6 md:px-10">
+    <footer>
+      {/* Newsletter Section */}
+      <div className="bg-slate-100 dark:bg-muted py-10 px-4 sm:px-6 md:px-10 w-full">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
-            <h3 className="text-2xl font-semibold text-black mb-2">
+          <div className="flex-1">
+            <h3 className="text-2xl font-semibold text-black dark:text-white mb-2">
               Subscribe our Newsletter
             </h3>
-            <p className="text-base text-slate-600 max-w-xl">
+            <p className="text-base text-slate-600 dark:text-slate-300 max-w-xl">
               Pellentesque eu nibh eget mauris congue mattis mattis nec tellus.
               Phasellus imperdiet elit eu magna.
             </p>
@@ -22,12 +23,12 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
             <Input
               placeholder="Your email address"
-              className="text-slate-700 border border-slate-200 w-full sm:w-auto"
+              className="text-slate-700 dark:text-white border border-slate-200 dark:border-slate-700 w-full sm:w-[360px] flex-1"
             />
             <Button className="bg-green-600 hover:bg-green-700 text-white px-6">
               Subscribe
             </Button>
-            <div className="flex items-center gap-3 ml-3 text-slate-500">
+            <div className="flex items-center gap-3 text-slate-500 dark:text-slate-300">
               <Facebook className="w-5 h-5 cursor-pointer hover:text-green-600" />
               <Twitter className="w-5 h-5 cursor-pointer hover:text-green-600" />
               <Instagram className="w-5 h-5 cursor-pointer hover:text-green-600" />
@@ -35,16 +36,15 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="bg-green-900 w-full text-white">
+
+      {/* Main Footer Section */}
+      <div className="bg-gray-900 dark:bg-[#102418] w-full">
         <div className="max-w-7xl mx-auto py-14 px-4 sm:px-6 md:px-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
             {/* Brand and Contact */}
             <div>
               <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-1">
-                <span role="img" aria-label="leaf">
-                  🌿
-                </span>
-                RMart
+                🌿 RMart
               </h3>
               <p className="text-white mb-4">
                 Morbi cursus porttitor enim lobortis molestie. Duis gravida
@@ -112,10 +112,11 @@ export default function Footer() {
             ))}
           </div>
 
+          {/* Divider */}
           <Separator className="my-10 bg-white/20" />
 
           {/* Footer Bottom */}
-          <div className="flex flex-col sm:flex-row justify-center items-center text-lg text-white">
+          <div className="flex flex-col sm:flex-row justify-center items-center text-lg text-white text-center">
             <p>
               RMart eCommerce © {new Date().getFullYear()}. All Rights Reserved.
             </p>

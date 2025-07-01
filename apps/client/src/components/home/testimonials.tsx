@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const testimonials = [
   {
@@ -118,22 +119,24 @@ export default function Testimonials() {
 
         {/* Navigation Arrows */}
         <div className="flex justify-end mt-6 gap-2">
-          <button
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() =>
               setIndex((prev) => (prev - 1 + pages.length) % pages.length)
             }
-            className="w-10 h-10 rounded-full bg-gray-200 dark:bg-green-700 hover:bg-green-500 hover:text-white transition-colors duration-300 flex items-center justify-center"
             aria-label="Previous"
           >
             ←
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => setIndex((prev) => (prev + 1) % pages.length)}
-            className="w-10 h-10 rounded-full bg-gray-200 dark:bg-green-700 hover:bg-green-500 hover:text-white transition-colors duration-300 flex items-center justify-center"
             aria-label="Next"
           >
             →
-          </button>
+          </Button>
         </div>
       </div>
     </section>

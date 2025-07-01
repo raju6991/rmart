@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
     <section className="px-4 py-8 bg-white dark:bg-[#0d1f16] dark:rounded-3xl dark:mx-5">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Banner */}
         <div className="lg:col-span-2 relative rounded-3xl overflow-hidden">
           <Image
             src="/bannar.png"
@@ -21,7 +23,7 @@ export default function HeroSection() {
               <br />
               Organic Food
             </h2>
-            <div className="text-left border-l-2 border-green-300 pl-4 h-15">
+            <div className="text-left border-l-2 border-green-300 pl-4">
               <p className="text-lg mb-2 tracking-wide leading-relaxed">
                 <span className="text-gray-300 font-bold">Sale up to </span>
                 <span className="bg-yellow-600 font-bold px-2 rounded">
@@ -33,16 +35,21 @@ export default function HeroSection() {
               </p>
             </div>
             <div className="my-8">
-              <Link
-                href="/shop"
-                className="bg-white hover:bg-gray-100 text-green-900 px-6 py-3 rounded-3xl w-max font-semibold"
-              >
-                Shop now →
+              <Link href="/shop">
+                <Button
+                  variant="default"
+                  className="bg-white hover:bg-gray-100 text-green-900 px-6 py-3 rounded-3xl font-semibold"
+                >
+                  Shop now →
+                </Button>
               </Link>
             </div>
           </div>
         </div>
+
+        {/* Side Banners */}
         <div className="flex flex-col gap-6">
+          {/* Banner 2 */}
           <div className="relative rounded-3xl overflow-hidden h-full aspect-auto">
             <Image
               src="/banner2.png"
@@ -60,6 +67,8 @@ export default function HeroSection() {
               </Link>
             </div>
           </div>
+
+          {/* Banner 3 */}
           <div className="relative rounded-3xl overflow-hidden h-full">
             <Image
               src="/banner3.png"
@@ -68,10 +77,10 @@ export default function HeroSection() {
               height={288}
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gray-900/50 flex flex-col justify-center items-center p-6 text-white">
+            <div className="absolute inset-0 bg-gray-900/50 flex flex-col justify-center items-center p-6 text-white text-center">
               <p className="text-sm uppercase">Best Deal</p>
               <h3 className="text-2xl font-bold">Deal of the Month</h3>
-              <Link href="/shop" className=" text-green-300 mt-1">
+              <Link href="/shop" className="text-green-300 mt-1">
                 Shop Now →
               </Link>
             </div>
